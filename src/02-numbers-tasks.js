@@ -7,7 +7,6 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-
 /**
  * Returns an area of a rectangle given by width and height.
  *
@@ -23,7 +22,6 @@ function getRectangleArea(width, height) {
   // throw new Error('Not implemented');
   return width * height;
 }
-
 
 /**
  * Returns a circumference of circle given by radius.
@@ -55,7 +53,7 @@ function getCircleCircumference(radius) {
  */
 function getAverage(value1, value2) {
   // throw new Error('Not implemented');
-  return (value1 / 2) + (value2 / 2);
+  return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -73,8 +71,11 @@ function getAverage(value1, value2) {
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  // throw new Error('Not implemented');
+  // √(x2 - x1) ** 2 + (y2 - y1) ** 2
+  const result = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+  return result;
 }
 
 /**
@@ -92,7 +93,6 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
 function getLinearEquationRoot(/* a, b */) {
   throw new Error('Not implemented');
 }
-
 
 /**
  * Returns an angle (in radians) between two vectors given by xi and yi,
@@ -131,9 +131,8 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
 function getLastDigit(value) {
   // throw new Error('Not implemented');
   const arr = String(value).split('');
-  return arr[arr.length - 1];
+  return Number(arr[arr.length - 1]);
 }
-
 
 /**
  * Returns a number by given string representation.
@@ -166,10 +165,9 @@ function parseNumberFromString(value) {
  */
 function getParallelepipedDiagonal(a, b, c) {
   // throw new Error('Not implemented');
-  const result = Math.sqrt((a * a) + (b * b) + (c * c));
+  const result = Math.sqrt(a * a + b * b + c * c);
   return result;
 }
-
 
 /**
  * Returns the number rounded to specified power of 10.

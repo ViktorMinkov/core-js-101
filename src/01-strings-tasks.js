@@ -221,10 +221,9 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   // throw new Error('Not implemented');
-  const symbols = ['┌', '─', '┐', '│', '┘', '└'];
-  const startLine = `${symbols[0]}${symbols[1].repeat(width - 2)}${symbols[2]}\n`;
-  const middleLine = `${symbols[3]}${' '.repeat(width - 2)}${symbols[3]}\n`;
-  const lastLine = `${symbols[5]}${symbols[1].repeat(width - 2)}${symbols[4]}\n`;
+  const startLine = `┌${'─'.repeat(width - 2)}┐\n`;
+  const middleLine = `│${' '.repeat(width - 2)}│\n`;
+  const lastLine = `└${'─'.repeat(width - 2)}┘\n`;
   const result = startLine + middleLine.repeat(height - 2) + lastLine;
   return result;
 }
@@ -248,6 +247,9 @@ function getRectangleString(width, height) {
  */
 function encodeToRot13(str) {
   // throw new Error('Not implemented');
+  // need refactor (write full letter lower and upppercase to easy code)
+  // abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+  // nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM
   const firstArr = 'abcdefghijklm'.split('');
   const secondArr = 'nopqrstuvwxyz'.split('');
   const value = str.split('');
@@ -328,8 +330,33 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  // throw new Error('Not implemented');
+  const card = value.length > 2 ? value.slice(0, 2) : value.slice(0, 1);
+  const suit = value.slice(-1);
+  const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+  const currentCardIndex = cards.indexOf(card) + 1;
+  let result;
+  switch (suit) {
+    case '♦':
+      result = 13 + currentCardIndex;
+      break;
+    case '♥':
+      result = 26 + currentCardIndex;
+      break;
+    case '♠':
+      result = 39 + currentCardIndex;
+      break;
+    default:
+      result = currentCardIndex;
+  }
+  return result - 1;
+
+  // const cards = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+  //   'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+  //   'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+  //   'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  // return cards.indexOf(value);
 }
 
 
